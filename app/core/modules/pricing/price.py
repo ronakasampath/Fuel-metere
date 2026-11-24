@@ -1,7 +1,7 @@
-import config
+import core.config as config
 
 
-def PriceMesure(Consumption,Distance,FuelType):
+def FuelPriceMesure(Consumption,Distance,FuelType):
     if FuelType.lower() == "petrol92":
         return Consumption*Distance*config.petrol92Price
     elif FuelType.lower() == "petrol95":

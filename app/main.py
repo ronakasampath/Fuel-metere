@@ -1,9 +1,9 @@
 from fastapi import FastAPI,Body
-from price import PriceMesure
-from accept import AcceptDieselAmount,AcceptDieselPrice,AcceptPetrolAmount,AcceptPetrolPrice
+from core.modules.pricing.price import FuelPriceMesure
+#from backend.app.core.modules.pricing.accept import AcceptDieselAmount,AcceptDieselPrice,AcceptPetrolAmount,AcceptPetrolPrice
 from typing import Annotated
-from schemas import PriceMeasure
-import config
+from core.modules.pricing.schemas import PriceMeasure
+import core.config
 
 app = FastAPI()
 
@@ -18,7 +18,7 @@ def home() :
 @app.post('/price')
 def CalculateFuelPrice(price:PriceMeasure):
     try:
-        Cost = PriceMesure(price.Consumption,price.Distance,price.FuelType)
+        Cost = FuelPriceMesure(price.Consumption,price.Distance,price.FuelType)
         return {
             "cost":Cost
         }
